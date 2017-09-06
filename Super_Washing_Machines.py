@@ -27,7 +27,7 @@ class Solution(object):
         #将序列改为正负关系序列
         move = []
         for i in range(len(machines)):
-            move.append(self.average - machines[i])
+            move.append(machines[i] - self.average)
 
         self.answer = 0
         mm = 0
@@ -36,13 +36,14 @@ class Solution(object):
             self.answer += move[i]
             mm = max(abs(self.answer), mm)
 
-        return max(mm, max(move) - self.average)
+
+        return max(mm, max(move))
 
 
 
 if __name__ == '__main__':
 
     a = Solution()
-    l = [4, 0, 0, 4]
+    l = [0, 3, 0]
     print(a.findMinMoves(l))
 
