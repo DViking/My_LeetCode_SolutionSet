@@ -14,19 +14,6 @@ class Solution(object):
         self.average = 0
         self.answer = 0
 
-    def group(self, move):
-        pass
-
-
-    def change(self, group):
-        pass
-
-    def isOkay(self, move):
-        for i in move:
-            if move[i] != 0:
-                return False
-        return True
-
     def findMinMoves(self, machines):
 
         """
@@ -34,37 +21,22 @@ class Solution(object):
         :rtype: int
         """
         self.all = sum(machines)
-
         if (self.all % len(machines)) != 0:
             return -1
-
         self.average = int(self.all/len(machines))
-
-        # print(self.average)
-        # print(len(machines))
-
+        #将序列改为正负关系序列
         move = []
-
-
         for i in range(len(machines)):
             move.append(self.average - machines[i])
 
         self.answer = 0
+        mm = 0
 
-        #相邻可以每次移动一件，而不是一次只能移动一件（应该用动态规划解决）
+        for i in range(len(move)):
+            self.answer += move[i]
+            mm = max(abs(self.answer), mm)
 
-        while not isOkay(move):
-            group(move)
-            change(move)
-            self.answer += 1
-
-        return self.answer
-
-        # for i in range(len(move)):
-        #     if move[i] > 0:
-        #         self.answer += move[i]
-        #
-        # return self.answer
+        return max(mm, max(move) - self.average)
 
 
 
